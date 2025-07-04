@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<section id="center" class="center_blog clearfix">
+    <div class="container">
+        {% block title %}{{ post.title }} - GMT Automation{% endblock %}
+        {% block content %}
+        <h2>{{ post.title }}</h2>
+        <p>Published on: {{ post.pub_date }}</p>
+        <p>By: {{ post.author }}</p>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.content }}</p>
+        {% endblock %}
+
+
+
+    </div>
+</section>

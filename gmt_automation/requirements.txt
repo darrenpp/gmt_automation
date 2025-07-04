@@ -1,0 +1,9 @@
+Pillow>=9.5.0  # For image & media file handling (ImageField, FileField)
+django-cleanup>=6.0.0 
+
+# Automatically deletes old media files when replaced
+# django-ckeditor>=6.5.0      # Rich text editor for blog/news content
+# whitenoise>=6.5.0           # Static file serving in production
+# gunicorn>=21.2.0            # WSGI HTTP server (for deployment)
+# psycopg2>=2.9.9             # PostgreSQL database driver
+# python-decouple>=3.8        # For managing environment variables securely
