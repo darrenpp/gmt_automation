@@ -1,7 +1,34 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %}Home - GMT Automation{% endblock %}
-{% block page_title %}Welcome to GMT Automation{% endblock %}
+{% block page_title %}<img src="{% static 'images/gmt.png' %}" alt="GMT Logo" class="brand-image img-circle elevation-3" style="opacity: .8">Welcome to GMT Automation{% endblock %}
 {% block content %}
+
+
+    <!-- Carousel -->
+<section>  <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for item in featured_items %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ item.image.url }}" class="d-block w-100" alt="{{ item.title }}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ item.title }}</h5>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
     <!-- About Us Section -->
     <div class="row">
         <div class="col-md-12">
@@ -72,19 +99,36 @@
             </div>
         </div>
     </div>
+    
 
-    <!-- Completed Projects Section (Optional) -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Completed Projects</h3>
-                </div>
-                <div class="card-body">
-                    <!-- Add completed projects logic here if needed -->
-                    <p>No completed projects available.</p>
+    <!-- Videos Section -->
+    <section id="videos" class="mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Videos</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <video id="videoPlayer" class="img-fluid" controls>
+                            <source id="videoSource" src="" type="video/mp4">
+                            <track id="subtitleTrack" label="English" kind="subtitles" srclang="en" src="" default>
+                            <track id="descriptionTrack" label="Descriptions" kind="descriptions" srclang="en" src="">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="list-group" id="videoList">
+                            {% for video in videos %}
+                                <a href="#" class="list-group-item list-group-item-action" data-video="{{ video.video_file.url }}">
+                                    <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="img-thumbnail" style="width: 100px; height: 60px; object-fit: cover;">
+                                    <span>{{ video.title }}</span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
